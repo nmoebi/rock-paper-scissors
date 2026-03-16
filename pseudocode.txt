@@ -1,0 +1,63 @@
+function: getComputerChoice()
+    input: no input
+    output: string "rock"/"paper"/"scissors"
+
+create variable choice with random value out of 1-3
+    1 is rock
+    2 is paper
+    3 is scissors
+return choice
+
+------------------------------------------------------
+
+function: getHumanChoice()
+    input: no input
+    output: string "rock"/"paper"/"scissors"
+
+create variable choice
+let the player input a string for choice
+return choice
+
+------------------------------------------------------
+
+function: playRound() 
+    input: no input
+    output: no output
+    outcome: checks choices and increments score of winner
+
+create variable computerChoice with value getComputerChoice()
+create variable humanChoice with value getHumanChoice()
+create variable round-winner with empty value
+
+check computer and human choice 
+    if human chose rock
+        if computer chose rock then there is no round winner
+        if computer chose scissors then the human wins
+        if computer chose paper then the computer wins
+
+    if human chose paper
+        if computer chose rock then the human wins
+        if computer chose scissors then the computer wins
+        if computer chose paper then there is no round winner
+
+    if human chose scissors
+        if computer chose rock then the computer wins
+        if computer chose scissors then there is no round winner
+        if computer chose paper then the human wins
+
+increment score of round-winner
+
+------------------------------------------------------
+
+function: playGame() 
+input: no input
+output: no output
+
+create variable humanScore with value 0
+create variable computerScore with value 0
+
+loop playRound() for 5 rounds
+
+output winner depending on the higher score
+
+------------------------------------------------------
