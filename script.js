@@ -1,44 +1,43 @@
+const plScore = document.querySelector("#scorePlayer");
+const plChoice = document.querySelector("#playerChoice");
+
+const comScore = document.querySelector("#scoreComputer");
+const comChoice = document.querySelector("#computerChoice");
+
+const roundText = document.querySelector("#round");
+const winnerText = document.querySelector("#winner"); 
+
+const btnRock = document.querySelector("#btnRock"); 
+    btnRock.addEventListener("click", () => playRound("rock"));
+
+const btnPaper = document.querySelector("#btnPaper");
+    btnPaper.addEventListener("click", () => playRound("paper"));
+
+const btnScissors = document.querySelector("#btnScissors");
+    btnScissors.addEventListener("click", () => playRound("scissors"));
+
+    let humanScore = 0;
+    let computerScore = 0;
+    let round = 0;
+
 getComputerChoice = function() {
     let choice = Math.floor(Math.random()*3) + 1;
-    if (choice === 1) {
-        console.log("Computer chooses rock");
+    if (choice === 1) 
         return "rock";
-    }
-    else if (choice === 2) { 
-        console.log("Computer chooses paper");
+    else if (choice === 2) 
         return "paper";
-    }
-    else if (choice === 3){
-        console.log("Computer chooses scissors");
+    else if (choice === 3) 
         return "scissors";
-    }
-    else console.log("computer could not decide");
+    else console.log("error with computer-choice");
 }
 
-getHumanChoice = function() {
-    let choice = prompt('Input "rock"/"paper"/"scissors"').toLowerCase();
-    if (choice === "rock") {
-        console.log("Player chooses rock");
-        return "rock";
-    }
-    else if (choice === "paper") { 
-        console.log("Player chooses paper");
-        return "paper";
-    }
-    else if (choice === "scissors"){
-        console.log("Player chooses scissors");
-        return "scissors";
-    }
-    else {
-        console.log("Player is a clown.");
-        return "";
-    }
-}
-
-playRound = function() {
-    let humanChoice = getHumanChoice();
+playRound = function(humanChoice) {
     let computerChoice = getComputerChoice();
-    let winner = "";
+    let winner;
+
+    roundText.textContent = `Round: ${++round}`;
+    plChoice.textContent = `Player-Choice: ${humanChoice}`;
+    comChoice.textContent = `Computer-Choice: ${computerChoice}`;
 
     if(computerChoice == "rock") {
         if (humanChoice == "paper") {
@@ -68,39 +67,12 @@ playRound = function() {
     }
 
     if (winner == "human") {
-        humanScore++;
-        console.log("Player wins the round!");
+        plScore.textContent = "Player-Score: " + ++humanScore;
+        winnerText.textContent = "Player wins the round!";
     }
     else if (winner == "computer") {
-        computerScore++;
-        console.log("Computer wins the round!");
+        comScore.textContent = "Computer-Score: " + ++computerScore;
+        winnerText.textContent = "Computer wins the round!";
     }
-    else {
-        console.log("No winner this round.");
-    }
-    console.log("\n");
-    
+    else winnerText.textContent = "No winner this round!";
 }
-
-playGame = function() {
-    
-    for(let i=0; i<5; i++) {
-        playRound();
-    }
-
-    console.log("-------------------------\n")
-
-    console.log("Player-Score:" + humanScore);
-    console.log("Computer-Score:" + computerScore + "\n");
-
-    if(humanScore > computerScore) 
-        console.log("Player wins the game!");
-    else if (humanScore < computerScore) 
-        console.log("Computer wins the game!");
-    else console.log("There are no winners here.")
-}
-
-let humanScore = 0;
-let computerScore = 0;
-
-playGame()
